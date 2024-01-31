@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_constructors, camel_case_types, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:qrcode_app/generate_qr_code.dart';
 import 'package:qrcode_app/scan_qr_code.dart';
 
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
 }
 
 class homePage extends StatefulWidget {
-  const homePage({super.key});
+  const homePage({Key? key}) : super(key: key);
 
   @override
   State<homePage> createState() => _homePageState();
@@ -34,6 +33,7 @@ class _homePageState extends State<homePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: const Text(
           'QR Code Scanner',
@@ -44,76 +44,85 @@ class _homePageState extends State<homePage> {
             fontSize: 20,
           ),
         ),
-        centerTitle: true, // Center aligns the title
-        backgroundColor: Colors.blueGrey.shade900,
+        centerTitle: true,
+        backgroundColor: Color.fromARGB(255, 96, 0, 126),
+        elevation: 0.0, // Set the elevation to 0.0 for a transparent background
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ScanQRCode()));
-                });
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blueGrey, // Background color
-                onPrimary: Colors.white, // Text color
-                padding: EdgeInsets.symmetric(
-                    vertical: 15, horizontal: 20), // Button padding
-                shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(10.0), // Button border radius
-                  side: BorderSide(color: Colors.blueGrey), // Border color
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                "assets/background-image.jpg"), // Update with your image path
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ScanQRCode()),
+                    );
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple.shade400,
+                  onPrimary: Colors.white,
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: BorderSide(color: Colors.purpleAccent.shade700),
+                  ),
+                  elevation: 5,
                 ),
-                elevation: 5, // Elevation (shadow)
-              ),
-              child: Text(
-                'Scan QR Code',
-                style: TextStyle(
+                child: Text(
+                  'Scan QR Code',
+                  style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    fontFamily: 'Poppins'),
+                    fontFamily: 'Poppins',
+                  ),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  Navigator.push(
+              SizedBox(
+                height: 40,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => GenerateQRCode()));
-                });
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blueGrey, // Background color
-                onPrimary: Colors.white, // Text color
-                padding: EdgeInsets.symmetric(
-                    vertical: 15, horizontal: 20), // Button padding
-                shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(10.0), // Button border radius
-                  side: BorderSide(color: Colors.blueGrey), // Border color
+                      MaterialPageRoute(builder: (context) => GenerateQRCode()),
+                    );
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple.shade400,
+                  onPrimary: Colors.white,
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: BorderSide(color: Colors.purpleAccent.shade700),
+                  ),
+                  elevation: 5,
                 ),
-                elevation: 5, // Elevation (shadow)
-              ),
-              child: Text(
-                'Generate QR Code',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500, // Corrected value
-                  fontFamily: 'Poppins',
+                child: Text(
+                  'Generate QR Code',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins',
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
