@@ -1,3 +1,8 @@
+
+<p align="center">
+  <img src="https://github.com/saim-x/QRcodeFlutterApp/blob/main/screenshots/img1.jpg" width="250" title="a">
+  <img src="https://github.com/saim-x/QRcodeFlutterApp/blob/main/screenshots/img2.jpg" width="250" alt="no">
+</p>
 # QR Code Scanner App
 
 A Flutter application for scanning and generating QR codes.
